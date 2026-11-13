@@ -1,0 +1,257 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:SystemInformer.Client">
+  <!-- Scope is the monitor view (or its independent window), never the host application. -->
+  <Style Selector="local|SystemInformerView">
+    <Setter Property="Background" Value="{DynamicResource BgContentBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextDefaultBrush}" />
+  </Style>
+  <!-- Typography, including readable Dark text tokens, comes from HeronTheme. -->
+  <Style Selector="TabControl.monitorTabs /template/ ItemsPresenter">
+    <Setter Property="Margin" Value="0,0,80,4" />
+    <Setter Property="MinHeight" Value="36" />
+  </Style>
+  <Style Selector="Button.processExpander">
+    <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+  </Style>
+  <Style Selector="Button.processExpander /template/ ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource AccentBrush}" />
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="Button.processExpander:pointerover">
+    <Setter Property="Foreground" Value="{DynamicResource AccentHoverBrush}" />
+  </Style>
+  <Style Selector="Button.processExpander:pointerover /template/ ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource AccentHoverBrush}" />
+    <Setter Property="Background" Value="{DynamicResource AccentSubtleHoverBrush}" />
+  </Style>
+  <Style Selector="Button.processExpander:pressed">
+    <Setter Property="Foreground" Value="{DynamicResource AccentPressedBrush}" />
+  </Style>
+  <Style Selector="Button.processExpander:pressed /template/ ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource AccentPressedBrush}" />
+  </Style>
+  <Style Selector="Button.processExpander:focus-visible /template/ ContentPresenter">
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderFocusBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+  </Style>
+  <Style Selector="Button.processExpander:disabled /template/ ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource TextDisabledBrush}" />
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="DataGrid">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource BorderDefaultBrush}" />
+  </Style>
+  <Style Selector="DataGridColumnHeader">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceSubtleBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    <Setter Property="Padding" Value="8,4" />
+  </Style>
+  <Style Selector="DataGridRowGroupHeader">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceSubtleBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource TextSecondaryBrush}" />
+    <Setter Property="MinHeight" Value="28" />
+  </Style>
+  <Style Selector="DataGridRow:selected">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgPrimaryBrush}" />
+  </Style>
+  <Style Selector="TextBox">
+    <Setter Property="Background" Value="{DynamicResource InputBgBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="MinHeight" Value="32" />
+  </Style>
+  <Style Selector="ComboBox">
+    <Setter Property="Background" Value="{DynamicResource InputBgBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="MinHeight" Value="32" />
+  </Style>
+  <Style Selector="TextBox.servicePath">
+    <Setter Property="FontFamily" Value="Cascadia Mono,Consolas,Microsoft YaHei UI" />
+    <Setter Property="FontSize" Value="12" />
+  </Style>
+  <Style Selector="Border.monitorSurface">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="12" />
+  </Style>
+  <Style Selector="Border.monitorNavigation">
+    <Setter Property="Background" Value="{DynamicResource NavBgBrush}" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="6" />
+  </Style>
+  <!-- Use actual checked state for navigation and service filters. -->
+  <Style Selector="ToggleButton.monitorToggle">
+    <Setter Property="MinHeight" Value="32" />
+    <Setter Property="Padding" Value="10,5" />
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:pointerover">
+    <Setter Property="Background" Value="{DynamicResource BgHoverBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgHoverBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:pressed">
+    <Setter Property="Background" Value="{DynamicResource BgPressedBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgPressedBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:checked">
+    <Setter Property="Background" Value="{DynamicResource BgSelectedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderSelectedBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgLinkBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:checked /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgSelectedBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderSelectedBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgLinkBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:checked:pointerover">
+    <Setter Property="Background" Value="{DynamicResource AccentSubtleHoverBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:checked:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource AccentSubtleHoverBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation">
+    <Setter Property="Background" Value="{DynamicResource NavBgBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource NavBgBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:pointerover">
+    <Setter Property="Background" Value="{DynamicResource NavHoverBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource NavHoverBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:checked">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource NavIndicatorBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource NavSelectedFgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:checked /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource NavIndicatorBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource NavSelectedFgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:pressed">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:checked:pointerover">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:checked:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource NavSelectedBgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorNavigation:checked TextBlock.textBody">
+    <Setter Property="Foreground" Value="{DynamicResource NavSelectedFgBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:focus-visible">
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderFocusBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:focus-visible /template/ ContentPresenter">
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderFocusBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:disabled">
+    <Setter Property="Opacity" Value="1" />
+    <Setter Property="Background" Value="{DynamicResource BgDisabledBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDisabledBrush}" />
+  </Style>
+  <Style Selector="ToggleButton.monitorToggle:disabled /template/ ContentPresenter">
+    <Setter Property="Opacity" Value="1" />
+    <Setter Property="Background" Value="{DynamicResource BgDisabledBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDisabledBrush}" />
+  </Style>
+  <!-- Shared button sizes/states remain in HeronTheme; migrate only semantic colors here. -->
+  <Style Selector="Button.buttonSecondary">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="Button.buttonSecondary /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="Button.buttonSecondary:pointerover">
+    <Setter Property="Background" Value="{DynamicResource BgHoverBrush}" />
+  </Style>
+  <Style Selector="Button.buttonSecondary:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgHoverBrush}" />
+  </Style>
+  <Style Selector="Button.buttonSecondary:pressed">
+    <Setter Property="Background" Value="{DynamicResource BgPressedBrush}" />
+  </Style>
+  <Style Selector="Button.buttonSecondary:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgPressedBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger">
+    <Setter Property="Background" Value="{DynamicResource DangerBgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource DangerFgBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource DangerBgBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource DangerBorderBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource DangerFgBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger:pointerover">
+    <Setter Property="Background" Value="{DynamicResource DangerBgHoverBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger:pointerover /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource DangerBgHoverBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger:pressed">
+    <Setter Property="Background" Value="{DynamicResource DangerBorderBrush}" />
+  </Style>
+  <Style Selector="Button.buttonDanger:pressed /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource DangerBorderBrush}" />
+  </Style>
+  <Style Selector="Button.contentButton:focus-visible">
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderFocusBrush}" />
+  </Style>
+  <Style Selector="Button.contentButton:focus-visible /template/ ContentPresenter">
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderFocusBrush}" />
+  </Style>
+  <Style Selector="Button.contentButton:disabled">
+    <Setter Property="Background" Value="{DynamicResource BgDisabledBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDisabledBrush}" />
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+  <Style Selector="Button.contentButton:disabled /template/ ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource BgDisabledBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDisabledBrush}" />
+    <Setter Property="Opacity" Value="1" />
+  </Style>
+</Styles>

@@ -1,0 +1,13 @@
+<Project>
+  <PropertyGroup>
+    <Nullable>enable</Nullable>
+    <LangVersion>12</LangVersion>
+    <Deterministic>true</Deterministic>
+    <Version>0.3.0</Version>
+    <HeronFrameworkVersion>0.2.1</HeronFrameworkVersion>
+    <HeronFrameworkFeed Condition="'$(HeronFrameworkFeed)' == ''">$(MSBuildThisFileDirectory)../../Binaries/Heron</HeronFrameworkFeed>
+    <RestoreAdditionalProjectSources Condition="Exists('$(HeronFrameworkFeed)')">$(RestoreAdditionalProjectSources);$(HeronFrameworkFeed)</RestoreAdditionalProjectSources>
+    <PathMap Condition="'$(Configuration)' == 'Release'">$(MSBuildThisFileDirectory)=/_/src/</PathMap>
+    <DebugType Condition="'$(Configuration)' == 'Release'">embedded</DebugType>
+  </PropertyGroup>
+</Project>

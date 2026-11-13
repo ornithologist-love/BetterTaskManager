@@ -1,0 +1,34 @@
+<Styles xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:local="using:Edirstat.Client">
+  <Style Selector="local|DiskUsageView">
+    <Setter Property="Background" Value="{DynamicResource BgContentBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="DataGrid">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderDefaultBrush}" />
+    <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource BorderDefaultBrush}" />
+  </Style>
+  <Style Selector="DataGridColumnHeader">
+    <Setter Property="Background" Value="{DynamicResource BgSurfaceSubtleBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgSecondaryBrush}" />
+    <Setter Property="Padding" Value="8,4" />
+  </Style>
+  <Style Selector="DataGridCell TextBlock">
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+  </Style>
+  <Style Selector="DataGridRow:selected">
+    <Setter Property="Background" Value="{DynamicResource BgSelectedBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgPrimaryBrush}" />
+  </Style>
+  <Style Selector="TextBox">
+    <Setter Property="Background" Value="{DynamicResource InputBgBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+  </Style>
+  <Style Selector="ComboBox">
+    <Setter Property="Background" Value="{DynamicResource InputBgBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource FgDefaultBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource BorderStrongBrush}" />
+  </Style>
+</Styles>

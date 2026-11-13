@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "heron.btm",
+  "display_name": "任务管理器",
+  "version": "0.3.0",
+  "host_api": "2",
+  "update_mode": "restart_required",
+  "modules": [
+    {
+      "name": "SystemInformer",
+      "assembly": "Heron.Plugin.BTM.dll",
+      "entry_type": "Heron.Plugins.BTM.SystemInformerModule",
+      "load": "startup"
+    }
+  ]
+}

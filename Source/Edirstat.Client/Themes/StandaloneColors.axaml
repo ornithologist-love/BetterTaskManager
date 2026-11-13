@@ -1,0 +1,37 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Embedded mode consumes the host dictionary; this fallback belongs only to the standalone shell. -->
+  <ResourceDictionary.ThemeDictionaries>
+    <ResourceDictionary x:Key="Light">
+      <SolidColorBrush x:Key="BgContentBrush">#F1F3EE</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSurfaceBrush">#FFFFFF</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSurfaceSubtleBrush">#F8F9F6</SolidColorBrush>
+      <SolidColorBrush x:Key="BgHoverBrush">#F1F3EE</SolidColorBrush>
+      <SolidColorBrush x:Key="BgDisabledBrush">#E3E7E0</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSelectedBrush">#EAF2ED</SolidColorBrush>
+      <SolidColorBrush x:Key="FgDefaultBrush">#3E433E</SolidColorBrush>
+      <SolidColorBrush x:Key="FgSecondaryBrush">#575D57</SolidColorBrush>
+      <SolidColorBrush x:Key="FgPrimaryBrush">#181B19</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderDefaultBrush">#E3E7E0</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderStrongBrush">#CDD2C9</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderFocusBrush">#28745B</SolidColorBrush>
+      <SolidColorBrush x:Key="InputBgBrush">#F8FAFC</SolidColorBrush>
+      <SolidColorBrush x:Key="AccentBrush">#28745B</SolidColorBrush>
+    </ResourceDictionary>
+    <ResourceDictionary x:Key="Dark">
+      <SolidColorBrush x:Key="BgContentBrush">#20211E</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSurfaceBrush">#292A27</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSurfaceSubtleBrush">#30312E</SolidColorBrush>
+      <SolidColorBrush x:Key="BgHoverBrush">#363733</SolidColorBrush>
+      <SolidColorBrush x:Key="BgDisabledBrush">#3E403A</SolidColorBrush>
+      <SolidColorBrush x:Key="BgSelectedBrush">#42453D</SolidColorBrush>
+      <SolidColorBrush x:Key="FgDefaultBrush">#D8D8D4</SolidColorBrush>
+      <SolidColorBrush x:Key="FgSecondaryBrush">#B0B1AB</SolidColorBrush>
+      <SolidColorBrush x:Key="FgPrimaryBrush">#F1F1EC</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderDefaultBrush">#45463F</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderStrongBrush">#55564E</SolidColorBrush>
+      <SolidColorBrush x:Key="BorderFocusBrush">#57BD72</SolidColorBrush>
+      <SolidColorBrush x:Key="InputBgBrush">#30312E</SolidColorBrush>
+      <SolidColorBrush x:Key="AccentBrush">#57BD72</SolidColorBrush>
+    </ResourceDictionary>
+  </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/target/
+.vs/
+.idea/
+*.user
+
+Binaries/
+.work/
+*.log

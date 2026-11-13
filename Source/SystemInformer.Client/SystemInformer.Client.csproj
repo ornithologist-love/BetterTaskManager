@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PlatformTarget>x64</PlatformTarget>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SystemInformer.Client.Tests" />
+    <ProjectReference Include="..\Edirstat.Client\Edirstat.Client.csproj" />
+    <PackageReference Include="Avalonia" Version="12.1.3" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Avalonia.Controls.DataGrid" Version="12.1.2" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="FluentIcons.Avalonia" Version="2.1.343" PrivateAssets="all" ExcludeAssets="runtime" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.335" PrivateAssets="all" IncludeAssets="build;buildTransitive;analyzers" />
+    <PackageReference Include="Microsoft.Windows.Wdk.Win32Metadata" Version="0.13.25-experimental" PrivateAssets="all" IncludeAssets="build;buildTransitive" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+[workspace]
+resolver = "3"
+members = ["crates/edirstat-core", "crates/edirstat-bridge"]
+default-members = ["crates/edirstat-bridge"]
+
+[workspace.package]
+version = "2.2.0"
+edition = "2024"
+license = "MIT"
+authors = ["Cody Wyatt Neiman (xangelix) <neiman@cody.to>"]
+repository = "https://github.com/xangelix/edirstat"
+
+[profile.release]
+panic = "abort"
+strip = true
+lto = "thin"
+codegen-units = 1
