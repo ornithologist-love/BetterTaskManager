@@ -16,6 +16,7 @@ using Edirstat.Client;
 using SystemInformer.Client.Processes;
 using SystemInformer.Client.Performance;
 using SystemInformer.Client.Services;
+using SystemInformer.Client.StartupManagement;
 using SystemInformer.Client.Themes;
 
 namespace SystemInformer.Client;
@@ -23,10 +24,12 @@ namespace SystemInformer.Client;
 /// <summary>Local monitoring panels. Sampling runs only while visible; all native work is serialized.</summary>
 public sealed class SystemInformerView : UserControl
 {
-    private const int ProcessTab = 0, PerformanceTab = 1, ServiceTab = 2, DiskTab = 3;
+    private const int ProcessTab = 0, PerformanceTab = 1, ServiceTab = 2, DiskTab = 3, StartupTab = 4;
     private readonly TabItem _diskTab = new() { Header = "磁盘空间" };
     private readonly TabItem _performanceTab = new() { Header = "性能" };
+    private readonly TabItem _startupTab = new() { Header = "StartupManagement" };
     private DiskUsageView? _diskUsage;
+    private StartupManagementView? _startupManagement;
     public Action<string>? CpuDiagnostics { set => _sampler.CpuDiagnostics = value; }
     private readonly ProcessSampler _sampler = new();
     private PerformanceSampler? _performanceSampler;
@@ -196,6 +199,11 @@ public sealed class SystemInformerView : UserControl
             _refresh.IsVisible = _activeTab != DiskTab;
             if (_activeTab == PerformanceTab) _performanceTab.Content = _performanceView ??= new PerformanceView();
             if (_activeTab == DiskTab) _diskTab.Content = _diskUsage ??= new DiskUsageView(useHostTheme: true);
+            if (_activeTab == StartupTab)
+            {
+                _startupTab.Content = _startupManagement ??= new StartupManagementView();
+                _startupManagement.EnsureLoaded();
+            }
             _refreshVersion++;
             if (wasService || _activeTab == ServiceTab) _cpuVersion++;
             _feedbackFlyout.Hide();
@@ -214,6 +222,11 @@ public sealed class SystemInformerView : UserControl
 
         _refresh.Click += (_, _) =>
         {
+            if (_activeTab == StartupTab)
+            {
+                _ = _startupManagement?.RefreshAsync();
+                return;
+            }
             _refreshVersion++;
             _settingsVersion++;
             _feedbackFlyout.Hide();
@@ -227,7 +240,8 @@ public sealed class SystemInformerView : UserControl
             new TabItem { Header = "进程", Content = ProcessPanel() },
             _performanceTab,
             new TabItem { Header = "服务", Content = ServicePanel() },
-            _diskTab
+            _diskTab,
+            _startupTab
         };
         _tabs.SelectedIndex = ProcessTab;
         var root = new Grid();
