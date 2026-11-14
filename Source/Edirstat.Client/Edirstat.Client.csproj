@@ -12,7 +12,7 @@
     <PackageReference Include="FluentIcons.Avalonia" Version="2.1.343" PrivateAssets="all" ExcludeAssets="runtime" />
     <None Include="$(EdirstatNativeLibrary)" Link="edirstat_bridge.dll" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
     <None Include="$(EdirstatNativeRoot)\LICENSE.edirstat" Link="LICENSE.edirstat" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
-    <None Include="..\..\Docs\disk-space.md" Link="EDIRSTAT.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <None Include="$(EdirstatNativeRoot)\README.md" Link="EDIRSTAT.md" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
   <Target Name="BuildEdirstatNative" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
     <Exec WorkingDirectory="$(EdirstatNativeRoot)" Command="cargo build --locked --release --package edirstat-bridge --target x86_64-pc-windows-msvc" />
