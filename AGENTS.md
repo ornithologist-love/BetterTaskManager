@@ -7,7 +7,7 @@
 - 包由公开 Heron.ClientFramework 契约编译，交付到 `Binaries/<id>/<version>`；不做隔离编译。
 - CsWin32 只用于构建；NativeMethods.txt 列出具体 API，不使用通配符，不引入驱动。
 - 保留 eDirStat 原始许可证和来源；不复制 System Informer/phlib 等其他实现。
-- 不新增业务测试；不得提交缓存、运行数据、凭据、SDK 副本或编译产物。
+- 框架层测试（插件契约接线、进程与磁盘操作的安全边界）按工作区[测试规范](../../Docs/TESTING.md)写，`dotnet test Tests/SystemInformer.Client.Tests` 运行，不写业务测试；不得提交缓存、运行数据、凭据、SDK 副本或编译产物。
 - Git 推送、远程部署和发布需要用户明确授权。
 
 - 仓库只保留 master 分支，初始交付为脱敏后的单个根提交。

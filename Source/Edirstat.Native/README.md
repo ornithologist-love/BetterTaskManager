@@ -12,4 +12,4 @@ web UI and unrelated packaging tools are not part of BetterTaskManager.
 
 `Source/Edirstat.Client/Edirstat.Client.csproj` builds the Windows x64 release
 DLL through Cargo during the regular plugin or standalone build. No other
-checkout or prebuilt eDirStat package is needed. See `Docs/disk-space.md`.
+checkout or prebuilt eDirStat package is needed. See the [disk-space documentation](../../README.md#磁盘空间).

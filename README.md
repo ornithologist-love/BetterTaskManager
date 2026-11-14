@@ -7,12 +7,12 @@ Windows x64 的 Avalonia 任务管理器，也可作为 Heron.ClientFramework �
 - 服务：查询、筛选和 Windows 原生服务管理。
 - 磁盘：基于 Rust eDirStat 扫描目录占用，用户点击后才开始扫描。
 
-插件 ID 为 `heron.btm`，版本 `0.3.0`，宿主接口版本 `2`。
+插件 ID 为 `heron.btm`，版本 `0.3.0`，宿主接口版本 `4`。
 首次打开页面才启动采样，切走立即停止；界面跟随 Heron 明暗主题。
 
 ## 构建
 
-需要 .NET 8 SDK、Python 3、Rust stable MSVC x64 工具链，以及 Heron 框架包 0.2.1。
+需要 .NET 8 SDK、Python 3、Rust stable MSVC x64 工具链，以及 Heron 框架包 0.2.8。
 默认使用工作区相邻 `Binaries/Heron` 本地包源，也可通过 `--framework-feed` 显式提供。
 
 ```powershell
