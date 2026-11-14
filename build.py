@@ -11,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import uuid
+import zipfile
 from pathlib import Path
 
 HOST_RUNTIME_DLL_RE = re.compile(
@@ -18,7 +19,7 @@ HOST_RUNTIME_DLL_RE = re.compile(
     r"CommunityToolkit\.Mvvm(?:\.|$)|Microsoft\.Extensions\.|Serilog(?:\.|$))"
 )
 
-ALL_TARGETS = ("disk", "systeminformer", "plugin", "app")
+ALL_TARGETS = ("disk", "systeminformer", "plugin", "app", "nuget")
 
 
 def read_manifest(repo: Path) -> dict:
@@ -128,8 +129,37 @@ def build_plugin(repo: Path, binary_root: Path, manifest: dict, cfg: str, framew
             dll.unlink()
 
     verify_required(staging, ["plugin.json", "Heron.Plugin.BTM.dll"], "plugin")
+    for name in ("LICENSE", "THIRD-PARTY-NOTICES.md"):
+        shutil.copy2(repo / name, staging / name)
     finalize_output(binary_root, staging, output)
     print(f"Plugin package: {output}")
+
+
+def build_nuget(repo: Path, binary_root: Path, manifest: dict, cfg: str, framework_feed: str | None) -> None:
+    if cfg != "Release":
+        raise RuntimeError("NuGet delivery requires Release.")
+    build_plugin(repo, binary_root, manifest, cfg, framework_feed)
+    project = repo / "Source" / "BTM.Package" / "Heron.Plugin.BTM.Package.csproj"
+    output = binary_root / "NuGet"
+    args = ["pack", str(project), "-c", "Release", "-o", str(output), "--nologo"]
+    if framework_feed:
+        args.append(f"-p:HeronFrameworkFeed={Path(framework_feed).resolve()}")
+    run_dotnet(repo, args)
+    archive = output / f"Heron.Plugin.BTM.{manifest['version']}.nupkg"
+    with zipfile.ZipFile(archive) as package:
+        names = set(package.namelist())
+        required = {"plugin/plugin.json", "plugin/Heron.Plugin.BTM.dll", "plugin/edirstat_bridge.dll",
+                    "plugin/SystemInformer.Client.dll", "plugin/SystemInformer.PluginFacade.dll", "plugin/Edirstat.Client.dll",
+                    "plugin/LICENSE", "plugin/LICENSE.edirstat", "plugin/THIRD-PARTY-NOTICES.md",
+                    "build/Heron.Plugin.BTM.targets", "LICENSE", "README.md"}
+        if not required.issubset(names):
+            raise RuntimeError("Incomplete NuGet plugin payload: " + ", ".join(sorted(required - names)))
+        if any(HOST_RUNTIME_DLL_RE.match(Path(name).name) for name in names if name.endswith(".dll")):
+            raise RuntimeError("NuGet plugin must use the host's shared framework assemblies.")
+        packed = json.loads(package.read("plugin/plugin.json"))
+        if packed != manifest:
+            raise RuntimeError("NuGet plugin identity differs from its source manifest.")
+    print(f"NuGet package: {archive}")
 
 
 def build_app(repo: Path, binary_root: Path, version: str, cfg: str, framework_feed: str | None, self_contained: bool) -> None:
@@ -170,7 +200,7 @@ def parse_args() -> argparse.Namespace:
         nargs="+",
         choices=[*ALL_TARGETS, "all"],
         default=["plugin"],
-        help="Build target(s): disk, systeminformer, plugin, app, or all (default: plugin).",
+        help="Build target(s): disk, systeminformer, plugin, app, nuget, or all (default: plugin).",
     )
     parser.add_argument(
         "-c", "--configuration",
@@ -216,6 +246,8 @@ def main() -> int:
             build_plugin(repo, binary_root, manifest, args.configuration, args.framework_feed)
         elif t == "app":
             build_app(repo, binary_root, version, args.configuration, args.framework_feed, self_contained)
+        elif t == "nuget":
+            build_nuget(repo, binary_root, manifest, args.configuration, args.framework_feed)
 
     return 0
 

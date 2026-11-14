@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <!-- Plugin assemblies are loaded by the host ALC, never linked into its executable. -->
+    <NoWarn>$(NoWarn);NU5100</NoWarn>
+    <PackageId>Heron.Plugin.BTM</PackageId>
+    <Authors>ornithologist-love</Authors>
+    <Description>Prebuilt Better Task Manager plugin for Heron hosts: processes, performance, services and Rust-powered disk usage. Windows x64, .NET 8, host API 4.</Description>
+    <PackageTags>heron;plugin;task-manager;windows;native</PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/ornithologist-love/BetterTaskManager</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/ornithologist-love/BetterTaskManager</PackageProjectUrl>
+    <RepositoryType>git</RepositoryType>
+    <PluginPayload>$(MSBuildThisFileDirectory)../../Binaries/heron.btm/$(Version)/</PluginPayload>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="$(PluginPayload)**/*" Pack="true" PackagePath="plugin/%(RecursiveDir)" />
+    <None Include="../../LICENSE" Pack="true" PackagePath="/" />
+    <None Include="../../README.md" Pack="true" PackagePath="/" />
+    <None Include="build/Heron.Plugin.BTM.targets" Pack="true" PackagePath="build/" />
+    <RequiredPayload Include="plugin.json;Heron.Plugin.BTM.dll;SystemInformer.PluginFacade.dll;SystemInformer.Client.dll;Edirstat.Client.dll;edirstat_bridge.dll;LICENSE;THIRD-PARTY-NOTICES.md;LICENSE.edirstat" />
+  </ItemGroup>
+  <Target Name="ValidateBtmPayload" BeforeTargets="GenerateNuspec">
+    <Error Condition="'$(Configuration)' != 'Release'" Text="BTM NuGet delivery requires Release." />
+    <Error Condition="!Exists('$(PluginPayload)%(RequiredPayload.Identity)')" Text="Missing BTM plugin payload: %(RequiredPayload.Identity). Run python build.py --target nuget -c Release." />
+  </Target>
+</Project>

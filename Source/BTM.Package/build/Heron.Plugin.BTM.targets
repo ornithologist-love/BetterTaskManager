@@ -1,0 +1,19 @@
+<Project>
+  <PropertyGroup>
+    <HeronBtmPluginVersion>0.3.0</HeronBtmPluginVersion>
+    <HeronBtmPluginSource>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)../plugin/'))</HeronBtmPluginSource>
+  </PropertyGroup>
+  <Target Name="StageHeronBtmPlugin" BeforeTargets="PrepareForBuild" Condition="'$(DesignTimeBuild)' != 'true'">
+    <PropertyGroup>
+      <HeronBtmPluginOutput Condition="'$(HeronBtmPluginOutput)' == ''">$(TargetDir)plugins/heron.btm/$(HeronBtmPluginVersion)/</HeronBtmPluginOutput>
+      <_BtmDestination>$([System.IO.Path]::GetFullPath('$(HeronBtmPluginOutput)'))</_BtmDestination>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(HeronBtmPluginSource)/plugin.json')" Text="The restored BTM package is incomplete. Restore Heron.Plugin.BTM again." />
+    <Error Condition="'$(HeronBtmPluginVersion)' == ''" Text="Missing BTM plugin version." />
+    <ItemGroup>
+      <_BtmPayload Include="$(HeronBtmPluginSource)/**/*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(_BtmPayload)" DestinationFiles="@(_BtmPayload->'$(_BtmDestination)/%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+    <Message Importance="High" Text="BTM NuGet plugin $(HeronBtmPluginVersion): $(_BtmDestination)" />
+  </Target>
+</Project>
